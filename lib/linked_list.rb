@@ -1,4 +1,7 @@
-class List
-  
+class LinkedList
+
+  def initialize
+    
+  end
 
 end
