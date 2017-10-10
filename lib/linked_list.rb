@@ -43,4 +43,12 @@ class LinkedList
       end
     end
   end
+
+  def prepend(surname)
+    @count += 1
+    first = Node.new(surname)
+    first.next_node = @head
+    @head = first
+  end
+
 end
