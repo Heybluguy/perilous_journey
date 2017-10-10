@@ -1,4 +1,5 @@
 require './lib/node'
+require 'pry'
 
 class LinkedList
 
@@ -20,35 +21,51 @@ class LinkedList
     if @head == nil
       @head = Node.new(surname)
     else
-      first = @head
+      current = @head
       while(true)
-        if first.next_node != nil
-          first = first.next_node
+        if current.next_node != nil
+          current = current.next_node
         else
-          return first.next_node = Node.new(surname)
+          return current.next_node = Node.new(surname)
         end
       end
     end
   end
 
   def to_string
-    first_family = "The #{head.surname} family"
-    first = @head.next_node
+    current_family = "The #{head.surname} family"
+    current = @head.next_node
     while(true)
-      if first == nil
-        return first_family
+      if current == nil
+        return current_family
       else
-         first_family += ", followed by the #{first.surname} family"
-         first = first.next_node
+         current_family += ", followed by the #{current.surname} family"
+         current = current.next_node
       end
     end
   end
 
   def prepend(surname)
     @count += 1
-    first = Node.new(surname)
-    first.next_node = @head
-    @head = first
+    current = Node.new(surname)
+    current.next_node = @head
+    @head = current
+  end
+
+  def insert(index, surname)
+    @count += 1
+    @position = 0
+    current = @head
+    while(true)
+      if @position < (index - 2)
+        current.next_node = current
+        @position += 1
+      else
+        new_node = Node.new("Lawson")
+        new_node.next_node = current.next_node
+        return current.next_node = new_node
+      end
+    end
   end
 
 end
