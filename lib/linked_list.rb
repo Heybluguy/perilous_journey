@@ -22,7 +22,7 @@ class LinkedList
       @head = Node.new(surname)
     else
       current = @head
-      while(true)
+      while true
         if current.next_node != nil
           current = current.next_node
         else
@@ -35,7 +35,7 @@ class LinkedList
   def to_string
     caravan = "The #{head.surname} family"
     current = @head.next_node
-    while(true)
+    while true
       if current == nil
         return caravan
       else
@@ -56,7 +56,7 @@ class LinkedList
     @count += 1
     @position = 0
     current = @head
-    while(true)
+    while true
       if @position < (index - 2)
         current.next_node = current
         @position += 1
@@ -71,7 +71,7 @@ class LinkedList
   def find(index, families)
     @position = 0
     current = @head
-    while(true)
+    while true
       caravan = "The #{current.surname} family"
       if @position < index
         current = current.next_node
@@ -88,15 +88,25 @@ class LinkedList
 
   def includes?(surname)
     current = @head
-    while(true)
-      if current.surname != surname
+    while true
+      if current.next_node == nil
+      return false
+      elsif current.surname != surname
         current = current.next_node
-      elsif current.next_node == nil
-        return false
       else
         return true
       end
     end
+  end
+
+  def pop
+    current = @head
+    current = current.next_node while current.next_node.next_node != nil
+    puts "The #{current.next_node.surname} family has died of dysentery."
+    removed = current.next_node
+    current.next_node = nil
+    @count -= 1
+    removed
   end
 
 end
