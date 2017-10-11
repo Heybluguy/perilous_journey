@@ -33,13 +33,13 @@ class LinkedList
   end
 
   def to_string
-    current_family = "The #{head.surname} family"
+    caravan = "The #{head.surname} family"
     current = @head.next_node
     while(true)
       if current == nil
-        return current_family
+        return caravan
       else
-         current_family += ", followed by the #{current.surname} family"
+         caravan += ", followed by the #{current.surname} family"
          current = current.next_node
       end
     end
@@ -64,6 +64,37 @@ class LinkedList
         new_node = Node.new("Lawson")
         new_node.next_node = current.next_node
         return current.next_node = new_node
+      end
+    end
+  end
+
+  def find(index, families)
+    @position = 0
+    current = @head
+    while(true)
+      caravan = "The #{current.surname} family"
+      if @position < index
+        current = current.next_node
+        @position += 1
+      else
+        (families - 1).times do
+        current = current.next_node
+        caravan += ", followed by the #{current.surname} family"
+      end
+      return caravan
+      end
+    end
+  end
+
+  def includes?(surname)
+    current = @head
+    while(true)
+      if current.surname != surname
+        current = current.next_node
+      elsif current.next_node == nil
+        return false
+      else
+        return true
       end
     end
   end

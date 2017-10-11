@@ -66,7 +66,35 @@ class LinkedlistTest < Minitest::Test
 
     assert_equal "The McKinney family, followed by the Lawson family, followed by the Brooks family, followed by the Henderson family", list.to_string
     assert_equal 4, list.count
+    refute_equal 5,list.count
   end
 
-  
+  def test_it_finds_nodes
+    list = LinkedList.new
+    list.append("Brooks")
+    list.append("Henderson")
+    list.prepend("McKinney")
+    list.insert(1, "Lawson")
+
+    assert_equal "The McKinney family, followed by the Lawson family, followed by the Brooks family, followed by the Henderson family", list.to_string
+    assert_equal "The Brooks family", list.find(2, 1)
+    assert_equal "The Lawson family, followed by the Brooks family, followed by the Henderson family", list.find(1, 3)
+    refute_equal "The Lawson family, followed by the Brooks family", list.find(1, 3)
+  end
+
+  def test_it_includes_a_family
+    list = LinkedList.new
+    list.append("Brooks")
+    list.append("Henderson")
+    list.prepend("McKinney")
+    list.insert(1, "Lawson")
+
+    assert_equal true, list.includes?("Brooks")
+
+
+  end
+
+
+
+
 end
