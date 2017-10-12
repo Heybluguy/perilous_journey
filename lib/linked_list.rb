@@ -53,7 +53,7 @@ class LinkedList
         current.next_node = current
         @position += 1
       else
-        new_node = Node.new("Lawson")
+        new_node = Node.new(surname)
         new_node.next_node = current.next_node
         return current.next_node = new_node
       end
@@ -98,11 +98,11 @@ class LinkedList
     removed = current.next_node
     current.next_node = nil
     @count -= 1
+    puts to_string
     removed
   end
 
   def add_to_count
     @count += 1
   end
-
 end

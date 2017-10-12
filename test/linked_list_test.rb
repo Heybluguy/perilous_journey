@@ -93,18 +93,18 @@ class LinkedlistTest < Minitest::Test
     refute list.includes?("Hardy")
   end
 
-  def test_pops_family
+  def test_pops_multiple_families
     list = LinkedList.new
     list.append("Brooks")
     list.append("Henderson")
     list.prepend("McKinney")
     list.insert(1, "Lawson")
     actual = list.pop
-    expected = "The McKinney family, followed by the Lawson family, followed by the Brooks family"
+    actual = list.pop
+    expected = "The McKinney family, followed by the Lawson family"
 
-    assert_equal "Henderson", actual.surname
+    assert_equal "Brooks", actual.surname
     assert_instance_of Node, actual
     assert_equal expected, list.to_string
   end
-
 end
