@@ -19,7 +19,7 @@ class WagonTrain
     current = list.head
     supplies = {}
     while current != nil
-      supplies = supplies.merge(current.supplies) {|items, item, new_item| new_item + item}
+      supplies = supplies.merge(current.supplies){|items, item, new_item| new_item + item}
       current = current.next_node
     end
     supplies
