@@ -8,7 +8,7 @@ class LinkedList
     @count = 0
   end
 
-  def append(surname)
+  def append(surname, supplies)
     add_to_count
     if @head == nil
       @head = Node.new(surname)
