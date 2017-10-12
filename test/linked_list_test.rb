@@ -1,7 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/linked_list'
-require 'pry'
 
 class LinkedlistTest < Minitest::Test
   def test_list_exists
@@ -15,6 +14,7 @@ class LinkedlistTest < Minitest::Test
 
     assert_nil list.head
     assert_equal 0, list.count
+    refute_equal 1, list.count
   end
 
   def test_can_append_new_node_to_empty_list
@@ -34,6 +34,7 @@ class LinkedlistTest < Minitest::Test
 
     assert_equal newest_node, list.head.next_node
     assert_equal 2, list.count
+    refute_equal 0, list.count
     assert_equal "The Rhodes family, followed by the Hardy family", list.to_string
   end
 
@@ -44,6 +45,17 @@ class LinkedlistTest < Minitest::Test
     list.append("Smiths")
 
     assert_equal 3, list.count
+    assert_equal "The Rhodes family, followed by the Hardy family, followed by the Smiths family", list.to_string
+  end
+
+  def test_append_three_nodes_with_supplies
+    list = LinkedList.new
+    list.append("Rhodes", {"pounds of food" => 200})
+    list.append("Hardy", {"pounds of food" => 200})
+    list.append("Smiths", {"pounds of food" => 200})
+
+    assert_equal 3, list.count
+    refute_equal 5, list.count
     assert_equal "The Rhodes family, followed by the Hardy family, followed by the Smiths family", list.to_string
   end
 
@@ -60,7 +72,7 @@ class LinkedlistTest < Minitest::Test
   def test_prepend_a_node_with_supplies
     list = LinkedList.new
     list.append("Brooks", {"pounds of food" => 200})
-    list.append("Henderson")
+    list.append("Henderson", {"pounds of food" => 200})
     list.prepend("McKinney", {"pounds of food" => 200})
 
     assert_equal "The McKinney family, followed by the Brooks family, followed by the Henderson family", list.to_string
