@@ -8,17 +8,17 @@ class LinkedList
     @count = 0
   end
 
-  def append(surname, supplies)
+  def append(surname, supplies = "")
     add_to_count
     if @head == nil
-      @head = Node.new(surname)
+      @head = Node.new(surname, supplies)
     else
       current = @head
       while true
         if current.next_node != nil
           current = current.next_node
         else
-          return current.next_node = Node.new(surname)
+          return current.next_node = Node.new(surname, supplies)
         end
       end
     end
@@ -37,14 +37,14 @@ class LinkedList
     end
   end
 
-  def prepend(surname)
+  def prepend(surname, supplies = "")
     add_to_count
-    current = Node.new(surname)
+    current = Node.new(surname, supplies)
     current.next_node = @head
     @head = current
   end
 
-  def insert(index, surname)
+  def insert(index, surname, supplies = "")
     add_to_count
     @position = 0
     current = @head
@@ -53,7 +53,7 @@ class LinkedList
         current.next_node = current
         @position += 1
       else
-        new_node = Node.new(surname)
+        new_node = Node.new(surname, supplies)
         new_node.next_node = current.next_node
         return current.next_node = new_node
       end

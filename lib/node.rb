@@ -1,5 +1,5 @@
 class Node
-  def initialize(surname, supplies = nil)
+  def initialize(surname, supplies = "")
     @surname = surname
     @next_node = next_node
     @supplies = supplies

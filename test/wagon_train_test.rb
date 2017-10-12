@@ -38,10 +38,8 @@ class WagonTrainTest < Minitest::Test
     wagon_train.append("West", {"spare wagon tongues" => 3, "pounds of food" => 300})
     wagon_train.append("Burke", {"pounds of food" => 200})
     expected = {"spare wagon tongues" => 3, "pounds of food" => 500}
-
+    
     assert_equal 2, wagon_train.count
     assert_equal expected, wagon_train.supplies
   end
-
-
 end

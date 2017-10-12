@@ -57,12 +57,34 @@ class LinkedlistTest < Minitest::Test
     assert_equal 3, list.count
   end
 
+  def test_prepend_a_node_with_supplies
+    list = LinkedList.new
+    list.append("Brooks", {"pounds of food" => 200})
+    list.append("Henderson")
+    list.prepend("McKinney", {"pounds of food" => 200})
+
+    assert_equal "The McKinney family, followed by the Brooks family, followed by the Henderson family", list.to_string
+    assert_equal 3, list.count
+  end
+
   def test_insert_a_node
     list = LinkedList.new
     list.append("Brooks")
     list.append("Henderson")
     list.prepend("McKinney")
     list.insert(1, "Lawson")
+
+    assert_equal "The McKinney family, followed by the Lawson family, followed by the Brooks family, followed by the Henderson family", list.to_string
+    assert_equal 4, list.count
+    refute_equal 5,list.count
+  end
+
+  def test_insert_a_node_with_supplies
+    list = LinkedList.new
+    list.append("Brooks", {"pounds of food" => 200})
+    list.append("Henderson", {"pounds of food" => 200})
+    list.prepend("McKinney", {"pounds of food" => 200})
+    list.insert(1, "Lawson", {"pounds of food" => 200})
 
     assert_equal "The McKinney family, followed by the Lawson family, followed by the Brooks family, followed by the Henderson family", list.to_string
     assert_equal 4, list.count

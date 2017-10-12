@@ -27,4 +27,10 @@ class NodeTest < Minitest::Test
 
     assert_equal "Senior", node.surname
   end
+
+  def test_it_node_exists_with_supplies
+    node = Node.new("Burke", {"pounds of food" => 200})
+
+    assert_instance_of Node, node
+  end
 end

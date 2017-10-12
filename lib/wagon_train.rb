@@ -1,11 +1,10 @@
 require './lib/linked_list'
 
 class WagonTrain
-  attr_reader :list
+  attr_reader :list, :supplies
 
   def initialize
     @list = LinkedList.new
-    @supplies = {}
   end
 
   def append(surname, supplies)
@@ -16,5 +15,13 @@ class WagonTrain
     list.count
   end
 
-  
+  def supplies
+    current = list.head
+    supplies = {}
+    while current != nil
+      supplies = supplies.merge(current.supplies) {|items, item_amount, new_item_amount| new_item_amount + item_amount}
+      current = current.next_node
+    end
+    supplies
+  end
 end
